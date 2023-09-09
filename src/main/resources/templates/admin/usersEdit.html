@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+</div>
+
+<body>
+<div th:insert="logoutFragment :: copy"></div>
+
+<table class="table" style="height: 50px">
+    <thead class=" thead-dark">
+    <tr>
+        <th scope="col w-100">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Role</th>
+        <th scope="col">User name</th>
+        <th scope="col">Password</th>
+        <th scope="col">Account non expired</th>
+        <th scope="col">Account non locked</th>
+        <th scope="col">Credentials non expired</th>
+        <th scope="col">Enabled</th>
+        <th scope="col">Update</th>
+        <th scope="col"></th>
+
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <form th:action="@{|/admin/${user.id}|}" method="post" modelAttribute="user">
+            <th scope="row">
+                <label th:text="${user.id}" class="sr-only" for="inlineFormInput"></label>
+                <input disabled th:value="${user.id}" name="id" type="number" class="form-control mb-2"
+                       id="inlineFormInput" placeholder="id">
+            </th>
+            <td>
+                <label class="sr-only" for="inlineFormInput">Name</label>
+                <input th:value="${user.name}" name="name" type="text" class="form-control mb-2" id="inlineFormInput"
+                       placeholder="Name">
+            </td>
+            <td>
+                <label class="sr-only" for="inlineFormInput">Age</label>
+                <input th:value="${user.age}" name="age" type="number" class="form-control mb-2" id="inlineFormInput"
+                       placeholder="Age">
+            </td>
+            <td>
+                <label class="sr-only" for="inlineFormInputGroup">email</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                    </div>
+                    <input th:value="${user.email}" name="email" type="email" class="form-control"
+                           id="inlineFormInputGroup" placeholder="Email">
+                </div>
+            </td>
+            <td>
+                <label class="sr-only" for="inlineFormInput">birthday</label>
+                <input th:value="${user.birthday}" name="birthday" type="date" class="form-control mb-2"
+                       id="inlineFormInput" placeholder="Birthday">
+            </td>
+            <td>
+                <label class="sr-only" for="inlineFormInput"></label>
+                <select th:field="*{user.role.authority}" name="userRole" class="custom-select mb-2" id="inlineFormInput">
+                    <option  th:value="'ROLE_ADMIN'">ADMIN</option>
+                    <option  th:value="'ROLE_USER'">USER</option>
+                </select>
+            </td>
+            <td>
+                <label class="sr-only" for="inlineFormInput">Name</label>
+                <input th:value="${user.username}" name="username" type="text" class="form-control mb-2" id="inlineFormInput"
+                       placeholder="Username">
+            </td>
+            <td>
+                <label class="sr-only" for="inlineFormInput">Name</label>
+                <input  name="password" type="password" class="form-control mb-2" id="inlineFormInput"
+                        placeholder="password">
+            </td>
+            <td>
+                <input type="checkbox" name="accountNonExpired" th:checked="${user.accountNonExpired}"/>
+            </td>
+            <td>
+                <input  type="checkbox" name="accountNonLocked" th:checked="${user.accountNonLocked}"/>
+
+            </td>
+            <td>
+                <input  type="checkbox" name="credentialsNonExpired" th:checked="${user.credentialsNonExpired}"/>
+
+            </td>
+            <td>
+                <input  type="checkbox" name="enabled" th:checked="${user.enabled}"/>
+
+            </td>
+
+            <td>
+                <button type="submit" class="btn btn-primary mb-2">Save</button>
+            </td>
+            <td>
+                <a th:href="@{/admin}">
+                    <button class="btn btn-secondary mb-2">
+                        Back
+                    </button>
+                </a>
+            </td>
+
+
+        </form>
+    </tr>
+
+
+    </tbody>
+</table>
+</body>
+</html>
